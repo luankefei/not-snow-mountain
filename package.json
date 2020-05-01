@@ -1,0 +1,35 @@
+{
+  "name": "not-snow-mountain",
+  "version": "0.0.1",
+  "description": "game engine, a spiritual successor of ",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
+    "coverage": "npm test -- --coverage",
+    "format": "prettier --no-semi --single-quote --parser typescript --write \"src/**/*.ts\"",
+    "upver": "standard-version",
+    "dev": "npm run start:dev",
+    "start": "npm run build:prod && node dist/index.js",
+    "start:pre": "npm run build:pre && MODE=pre node dist/index.js",
+    "start:dev": "better-npm-run build:dev && better-npm-run start:dev",
+    "build": "rollup",
+    "build:watch": "webpack --watch",
+    "build:prod": "better-npm-run build:prod",
+    "build:pre": "better-npm-run build:pre",
+    "build:dev": "better-npm-run build:dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luankefei/not-snow-mountain.git"
+  },
+  "author": "sunken",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luankefei/not-snow-mountain/issues"
+  },
+  "homepage": "https://github.com/luankefei/not-snow-mountain#readme"
+}
