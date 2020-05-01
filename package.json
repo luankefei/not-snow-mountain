@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "game engine, a spiritual successor of ",
   "main": "dist/index.js",
+  "exports": "dist/index.js",
   "type": "module",
   "engines": {
     "node": ">=14"
@@ -28,7 +29,7 @@
     "url": "git+https://github.com/luankefei/not-snow-mountain.git"
   },
   "author": "sunken",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/luankefei/not-snow-mountain/issues"
   },
@@ -37,6 +38,7 @@
     "@rollup/plugin-typescript": "^4.1.1",
     "rollup": "^2.7.6",
     "rollup-plugin-sourcemaps": "^0.6.0",
+    "tslib": "^1.11.1",
     "typescript": "^3.8.3"
   }
 }

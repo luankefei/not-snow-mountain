@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowUnreachableCode": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "moduleResolution": "classic",
+    "module": "esnext",
+    "target": "esnext",
+    "sourceMap": true,
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "noEmitHelpers": true,
+    "noEmitOnError": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "lib": ["dom", "es2015", "es2017.object", "esnext.asynciterable"]
+  },
+  "exclude": [
+    "apis",
+    "config",
+    "build",
+    "dist",
+    "tools",
+    "node_modules",
+    "typings",
+    "**/*.spec.ts"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}
