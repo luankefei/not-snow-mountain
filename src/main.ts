@@ -1,7 +1,48 @@
-function test() {
-  console.log("hello world");
+/**
+ *
+ */
+class Game {
+  canvas: HTMLCanvasElement;
+  context: CanvasRenderingContext2D;
+
+  // 默认全屏创建
+  constructor(id: string = "") {
+    this.canvas = id
+      ? getCanvasElementById(id)
+      : createCanvas(screen.availWidth, screen.availHeight);
+    this.context = getCanvasRenderingContext2D(this.canvas);
+  }
 }
 
-console.log("oooojbk");
+function getCanvasElementById(id: string) {
+  let canvas = document.getElementById(id) as HTMLCanvasElement;
+  if (!canvas || canvas.constructor !== HTMLCanvasElement) {
+    throw new TypeError(
+      'The element of id "${id}" is not a HTMLCanvasElement. Make sure a <canvas id="${id}""> element is present in the document.'
+    );
+  }
+  return canvas;
+}
 
-export default test;
+function getCanvasRenderingContext2D(
+  node: HTMLCanvasElement
+): CanvasRenderingContext2D {
+  const context = node.getContext("2d");
+  if (context === null) {
+    throw new Error(
+      "This browser does not support 2-dimensional canvas rendering contexts."
+    );
+  }
+  return context;
+}
+
+function createCanvas(width: number, height: number) {
+  const node = document.createElement("canvas");
+  node.width = width || screen.availWidth;
+  node.height = height || screen.availHeight;
+
+  return node;
+}
+
+export { Game };
+export default Game;

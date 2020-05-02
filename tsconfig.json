@@ -6,7 +6,7 @@
     "baseUrl": "./src",
     "moduleResolution": "classic",
     "module": "esnext",
-    "target": "esnext",
+    "target": "es5",
     "sourceMap": true,
     "inlineSourceMap": false,
     "inlineSources": false,
