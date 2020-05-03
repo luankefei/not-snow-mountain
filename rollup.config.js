@@ -9,7 +9,7 @@ const config = {
   plugins: [
     typescript({
       exclude: "node_modules/**",
-      module: "es5",
+      module: "esnext",
     }),
     // sourcemaps(),
   ],
