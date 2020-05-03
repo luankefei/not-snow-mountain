@@ -18,6 +18,48 @@ class ImagePainter {
   }
 }
 
+interface ICell {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+class SpiritSheetPainter {
+  cells: ICell[];
+  cellIndex: number = 0;
+  spiritSheet: HTMLImageElement;
+
+  constructor(cells: any, spiritSheet: HTMLImageElement) {
+    this.cells = cells;
+    this.spiritSheet = spiritSheet;
+  }
+
+  advance() {
+    // loop
+    if (this.cellIndex === this.cells.length - 1) {
+      this.cellIndex = 0;
+    } else {
+      this.cellIndex++;
+    }
+  }
+
+  paint(spirit: Spirit, context: CanvasRenderingContext2D) {
+    const cell = this.cells[this.cellIndex];
+    context.drawImage(
+      this.spiritSheet,
+      cell.x,
+      cell.y,
+      cell.width,
+      cell.height,
+      spirit.left,
+      spirit.top,
+      cell.width,
+      cell.height
+    );
+  }
+}
+
 class BallPainter {
   radius: number;
 
@@ -48,4 +90,4 @@ class BallPainter {
   }
 }
 
-export { ImagePainter, BallPainter };
+export { ImagePainter, SpiritSheetPainter, BallPainter };
