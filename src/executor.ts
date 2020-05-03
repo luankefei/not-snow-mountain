@@ -12,4 +12,24 @@ const runInPlace = {
   },
 };
 
-export { runInPlace };
+const moveLeftToRight = {
+  lastMove: 0,
+
+  execute: function (
+    sprite: Sprite,
+    _: CanvasRenderingContext2D,
+    time: number
+  ) {
+    if (this.lastMove !== 0) {
+      sprite.left -= sprite.velocityX * ((time - this.lastMove) * 1000);
+
+      if (sprite.left < 0) {
+        // TODO: 使用screen替代了canvas.width
+        sprite.left = screen.width;
+      }
+    }
+    this.lastMove = time;
+  },
+};
+
+export { runInPlace, moveLeftToRight };
