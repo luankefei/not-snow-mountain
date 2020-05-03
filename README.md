@@ -16,5 +16,4 @@ high_socre 计分板
 audio 音频支持
 control 游戏控制，start，stop，pause
 loader 资源加载
-
 ```
