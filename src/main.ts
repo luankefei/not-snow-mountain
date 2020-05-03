@@ -15,10 +15,11 @@ class Game {
 }
 
 function getCanvasElementById(id: string) {
-  let canvas = document.getElementById(id) as HTMLCanvasElement;
+  const canvas = document.getElementById(id) as HTMLCanvasElement;
+  console.log("==========> ", canvas, canvas.constructor);
   if (!canvas || canvas.constructor !== HTMLCanvasElement) {
     throw new TypeError(
-      'The element of id "${id}" is not a HTMLCanvasElement. Make sure a <canvas id="${id}""> element is present in the document.'
+      `The element of id "${id}" is not a HTMLCanvasElement. Make sure a <canvas id="${id}""> element is present in the document.`
     );
   }
   return canvas;
@@ -38,8 +39,10 @@ function getCanvasRenderingContext2D(
 
 function createCanvas(width: number, height: number) {
   const node = document.createElement("canvas");
+  node.id = "canvas";
   node.width = width || screen.availWidth;
   node.height = height || screen.availHeight;
+  document.body.appendChild(node);
 
   return node;
 }

@@ -1,5 +1,6 @@
 // export default {
 module.exports = {
+  // testEnvironment: "jest-environment-jsdom-fourteen",
   testEnvironment: "jsdom",
 
   // testEnvironment: "node",
@@ -8,4 +9,5 @@ module.exports = {
     "^.+\\.[t|j]sx?$": "babel-jest",
     "^.+\\.ts$": "ts-jest",
   },
+  setupFiles: ["jest-canvas-mock"],
 };
