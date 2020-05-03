@@ -1,6 +1,6 @@
 import Spirit from "../src/spirit";
 import Game from "../src/main";
-import { ballPainter } from "../src/painter";
+import { BallPainter } from "../src/painter";
 
 test("create a spirit", () => {
   const game = new Game();
@@ -8,7 +8,7 @@ test("create a spirit", () => {
 
   expect(() => {
     const ball = new Spirit("ball", {
-      paint: ballPainter,
+      paint: BallPainter,
     });
 
     ball.left = 320;
