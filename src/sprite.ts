@@ -2,7 +2,7 @@
  *
  */
 
-class Spirit {
+class sprite {
   top: number;
   left: number;
   width: number;
@@ -47,4 +47,4 @@ class Spirit {
   }
 }
 
-export default Spirit;
+export default sprite;

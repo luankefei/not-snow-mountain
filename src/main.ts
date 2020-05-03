@@ -4,7 +4,7 @@
 class Game {
   canvas: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
-  spirits: any[];
+  sprites: any[];
 
   // 默认全屏创建
   constructor(id: string = "") {
@@ -12,7 +12,7 @@ class Game {
       ? getCanvasElementById(id)
       : createCanvas(screen.availWidth, screen.availHeight);
     this.context = getCanvasRenderingContext2D(this.canvas);
-    this.spirits = [];
+    this.sprites = [];
   }
 }
 

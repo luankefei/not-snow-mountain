@@ -1,4 +1,4 @@
-import Spirit from "spirit";
+import sprite from "sprite";
 
 class ImagePainter {
   image: HTMLImageElement;
@@ -7,13 +7,13 @@ class ImagePainter {
     this.image = image;
   }
 
-  paint(spirit: Spirit, context: CanvasRenderingContext2D) {
+  paint(sprite: sprite, context: CanvasRenderingContext2D) {
     context.drawImage(
       this.image,
-      spirit.left,
-      spirit.top,
-      spirit.width,
-      spirit.height
+      sprite.left,
+      sprite.top,
+      sprite.width,
+      sprite.height
     );
   }
 }
@@ -25,14 +25,14 @@ interface ICell {
   height: number;
 }
 
-class SpiritSheetPainter {
+class spriteSheetPainter {
   cells: ICell[];
   cellIndex: number = 0;
-  spiritSheet: HTMLImageElement;
+  spriteSheet: HTMLImageElement;
 
-  constructor(cells: any, spiritSheet: HTMLImageElement) {
+  constructor(cells: any, spriteSheet: HTMLImageElement) {
     this.cells = cells;
-    this.spiritSheet = spiritSheet;
+    this.spriteSheet = spriteSheet;
   }
 
   advance() {
@@ -44,16 +44,16 @@ class SpiritSheetPainter {
     }
   }
 
-  paint(spirit: Spirit, context: CanvasRenderingContext2D) {
+  paint(sprite: sprite, context: CanvasRenderingContext2D) {
     const cell = this.cells[this.cellIndex];
     context.drawImage(
-      this.spiritSheet,
+      this.spriteSheet,
       cell.x,
       cell.y,
       cell.width,
       cell.height,
-      spirit.left,
-      spirit.top,
+      sprite.left,
+      sprite.top,
       cell.width,
       cell.height
     );
@@ -67,11 +67,11 @@ class BallPainter {
     this.radius = radius;
   }
 
-  paint(spirit: Spirit, context: CanvasRenderingContext2D) {
+  paint(sprite: sprite, context: CanvasRenderingContext2D) {
     context.beginPath();
     context.arc(
-      spirit.left + spirit.width / 2,
-      spirit.top + spirit.height / 2,
+      sprite.left + sprite.width / 2,
+      sprite.top + sprite.height / 2,
       this.radius,
       0,
       Math.PI * 2,
@@ -90,4 +90,4 @@ class BallPainter {
   }
 }
 
-export { ImagePainter, SpiritSheetPainter, BallPainter };
+export { ImagePainter, spriteSheetPainter, BallPainter };

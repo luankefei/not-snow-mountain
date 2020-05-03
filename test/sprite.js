@@ -1,13 +1,13 @@
-import Spirit from "../src/spirit";
+import sprite from "../src/sprite";
 import Game from "../src/main";
 import { BallPainter } from "../src/painter";
 
-test("create a spirit", () => {
+test("create a sprite", () => {
   const game = new Game();
   const context = game.context;
 
   expect(() => {
-    const ball = new Spirit("ball", new BallPainter(75));
+    const ball = new sprite("ball", new BallPainter(75));
 
     ball.left = 320;
     ball.top = 160;

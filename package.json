@@ -1,7 +1,7 @@
 {
   "name": "not-snow-mountain",
   "version": "0.0.1",
-  "description": "game engine, a spiritual successor of ",
+  "description": "game engine, a spriteual successor of ",
   "main": "dist/index.js",
   "exports": "dist/index.js",
   "engines": {
