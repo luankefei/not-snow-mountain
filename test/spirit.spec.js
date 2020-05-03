@@ -7,9 +7,7 @@ test("create a spirit", () => {
   const context = game.context;
 
   expect(() => {
-    const ball = new Spirit("ball", {
-      paint: BallPainter,
-    });
+    const ball = new Spirit("ball", new BallPainter(75));
 
     ball.left = 320;
     ball.top = 160;
