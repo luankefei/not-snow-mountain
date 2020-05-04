@@ -14,7 +14,7 @@ const config = {
     // sourcemaps(),
   ],
   output: {
-    name: "$",
+    name: "Game",
     file: "dist/index.js",
     format: "iife",
   },

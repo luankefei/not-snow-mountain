@@ -1,5 +1,7 @@
-// export default {
-module.exports = {
+// await (babel.loadPartialConfigAsync || babel.loadPartialConfig)(args);
+
+export default {
+  // module.exports = {
   // testEnvironment: "jest-environment-jsdom-fourteen",
   testEnvironment: "jsdom",
 
