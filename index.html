@@ -8,6 +8,75 @@
   <body>
     <script src="./dist/index.js"></script>
     <script>
+      console.log($);
+
+      const game = new $.Game();
+      const canvas = game.canvas;
+      const context = game.context;
+
+      const image = new Image();
+      image.src = "./static/running_sprite_sheet.png";
+      image.onload = () => {
+        console.log("image onload", image);
+        const sprite = init();
+        animate(sprite);
+      };
+      const runnerCells = [
+        { left: 0, top: 0, width: 47, height: 64 },
+        { left: 55, top: 0, width: 44, height: 64 },
+        { left: 107, top: 0, width: 39, height: 64 },
+        { left: 150, top: 0, width: 46, height: 64 },
+        { left: 208, top: 0, width: 49, height: 64 },
+        { left: 265, top: 0, width: 46, height: 64 },
+        { left: 320, top: 0, width: 42, height: 64 },
+        { left: 380, top: 0, width: 35, height: 64 },
+        { left: 425, top: 0, width: 35, height: 64 },
+      ];
+
+      const runInPlace = {
+        lastAdvance: 0,
+        PAGEFLIP_INTERVAL: 1000,
+
+        excute: function (sprite, context, now) {
+          if (now - this.lastAdvance > this.PAGEFLIP_INTERVAL) {
+            sprite.painter.advance();
+            this.lastAdvance = now;
+          }
+        },
+      };
+
+      const painter = new $.Painter.SpriteSheetPainter(runnerCells, image, [
+        runInPlace,
+      ]);
+
+      function init() {
+        const sprite = new $.Sprite("runner", painter);
+        console.log("game", game);
+        console.log("sprite", sprite);
+        return sprite;
+      }
+
+      function drawBackround() {
+        context.save();
+        context.fillStyle = "rgb(255,0,0)";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.restore();
+      }
+
+      function animate(sprite) {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        drawBackround();
+        console.log("sprite --- 2", sprite);
+        // sprite.update(context, Date.now());
+        sprite.paint(context);
+        // sprite.advance();
+
+        // loop
+        // requestAnimationFrame
+      }
+      // running_sprite_sheet.png
+      // const sprite = new Sprite("runner", new SpriteSheetPainter(runnerCells));
+
       // function createCanvas(width, height) {
       //   const node = document.createElement("canvas");
       //   node.width = width || screen.availWidth;

@@ -2,7 +2,7 @@
  *
  */
 
-class sprite {
+class Sprite {
   top: number;
   left: number;
   width: number;
@@ -17,6 +17,7 @@ class sprite {
   behaviors: any[];
 
   constructor(name: string, painter: any, behaviors: any[]) {
+    console.log("sprite constructor", name, painter);
     if (painter !== undefined) this.painter = painter;
 
     this.top = 0;
@@ -35,7 +36,9 @@ class sprite {
   }
 
   paint(context: CanvasRenderingContext2D) {
+    console.log("Sprint ==========> ", this.painter, this.visible);
     if (this.painter !== undefined && this.visible) {
+      console.log("in");
       this.painter.paint(this, context);
     }
   }
@@ -47,4 +50,4 @@ class sprite {
   }
 }
 
-export default sprite;
+export default Sprite;

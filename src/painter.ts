@@ -25,7 +25,7 @@ interface ICell {
   height: number;
 }
 
-class spriteSheetPainter {
+class SpriteSheetPainter {
   cells: ICell[];
   cellIndex: number = 0;
   spriteSheet: HTMLImageElement;
@@ -45,6 +45,12 @@ class spriteSheetPainter {
   }
 
   paint(sprite: sprite, context: CanvasRenderingContext2D) {
+    console.log(
+      "=====> SpriteSheetPainter.paint",
+      this.cellIndex,
+      this.cells,
+      this.spriteSheet
+    );
     const cell = this.cells[this.cellIndex];
     context.drawImage(
       this.spriteSheet,
@@ -90,4 +96,4 @@ class BallPainter {
   }
 }
 
-export { ImagePainter, spriteSheetPainter, BallPainter };
+export { ImagePainter, SpriteSheetPainter, BallPainter };

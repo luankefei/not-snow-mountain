@@ -1,6 +1,9 @@
 /**
  *
  */
+import * as Painter from "./painter";
+import Sprite from "./sprite";
+
 class Game {
   canvas: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
@@ -48,5 +51,5 @@ function createCanvas(width: number, height: number) {
   return node;
 }
 
-export { Game };
+export { Game, Painter, Sprite };
 export default Game;
