@@ -8,8 +8,6 @@
   <body>
     <script src="./dist/index.js"></script>
     <script>
-      console.log($);
-
       const game = new $.Game();
       const canvas = game.canvas;
       const context = game.context;
@@ -17,27 +15,26 @@
       const image = new Image();
       image.src = "./static/running_sprite_sheet.png";
       image.onload = () => {
-        console.log("image onload", image);
         const sprite = init();
         animate(sprite);
       };
       const runnerCells = [
-        { left: 0, top: 0, width: 47, height: 64 },
-        { left: 55, top: 0, width: 44, height: 64 },
-        { left: 107, top: 0, width: 39, height: 64 },
-        { left: 150, top: 0, width: 46, height: 64 },
-        { left: 208, top: 0, width: 49, height: 64 },
-        { left: 265, top: 0, width: 46, height: 64 },
-        { left: 320, top: 0, width: 42, height: 64 },
-        { left: 380, top: 0, width: 35, height: 64 },
-        { left: 425, top: 0, width: 35, height: 64 },
+        { x: 0, y: 0, width: 47, height: 64 },
+        { x: 55, y: 0, width: 44, height: 64 },
+        { x: 107, y: 0, width: 39, height: 64 },
+        { x: 150, y: 0, width: 46, height: 64 },
+        { x: 208, y: 0, width: 49, height: 64 },
+        { x: 265, y: 0, width: 46, height: 64 },
+        { x: 320, y: 0, width: 42, height: 64 },
+        { x: 380, y: 0, width: 35, height: 64 },
+        { x: 425, y: 0, width: 35, height: 64 },
       ];
 
       const runInPlace = {
         lastAdvance: 0,
         PAGEFLIP_INTERVAL: 1000,
 
-        excute: function (sprite, context, now) {
+        execute: function (sprite, context, now) {
           if (now - this.lastAdvance > this.PAGEFLIP_INTERVAL) {
             sprite.painter.advance();
             this.lastAdvance = now;
@@ -45,20 +42,16 @@
         },
       };
 
-      const painter = new $.Painter.SpriteSheetPainter(runnerCells, image, [
-        runInPlace,
-      ]);
+      const painter = new $.Painter.SpriteSheetPainter(runnerCells, image);
 
       function init() {
-        const sprite = new $.Sprite("runner", painter);
-        console.log("game", game);
-        console.log("sprite", sprite);
+        const sprite = new $.Sprite("runner", painter, [runInPlace]);
         return sprite;
       }
 
       function drawBackround() {
         context.save();
-        context.fillStyle = "rgb(255,0,0)";
+        context.fillStyle = "rgb(230,230,230)";
         context.fillRect(0, 0, canvas.width, canvas.height);
         context.restore();
       }
@@ -66,9 +59,11 @@
       function animate(sprite) {
         context.clearRect(0, 0, canvas.width, canvas.height);
         drawBackround();
-        console.log("sprite --- 2", sprite);
-        // sprite.update(context, Date.now());
         sprite.paint(context);
+        sprite.update(context, Date.now());
+
+        requestAnimationFrame(() => animate(sprite));
+
         // sprite.advance();
 
         // loop

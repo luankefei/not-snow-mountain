@@ -52,6 +52,8 @@ class SpriteSheetPainter {
       this.spriteSheet
     );
     const cell = this.cells[this.cellIndex];
+    // context.fillStyle = "rgb(255, 255, 255)";
+    // context.fillRect(cell.x, cell.y, cell.width, cell.height);
     context.drawImage(
       this.spriteSheet,
       cell.x,

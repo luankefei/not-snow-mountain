@@ -17,7 +17,6 @@ class Sprite {
   behaviors: any[];
 
   constructor(name: string, painter: any, behaviors: any[]) {
-    console.log("sprite constructor", name, painter);
     if (painter !== undefined) this.painter = painter;
 
     this.top = 0;
@@ -36,9 +35,7 @@ class Sprite {
   }
 
   paint(context: CanvasRenderingContext2D) {
-    console.log("Sprint ==========> ", this.painter, this.visible);
     if (this.painter !== undefined && this.visible) {
-      console.log("in");
       this.painter.paint(this, context);
     }
   }
