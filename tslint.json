@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-config-airbnb",
+    "tslint-config-alloy",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "semicolon": [true, "never"],
+    "import-name": [
+      false,
+      {
+        "app": "App",
+        "head": "Head"
+      }
+    ],
+    "ordered-imports": false,
+    "no-import-side-effect": [true, { "ignore-pattern": "/antd-mobile.*/" }],
+    "react-a11y-titles": false,
+    "member-access": false,
+    "interface-over-type-literal": false
+  }
+}
