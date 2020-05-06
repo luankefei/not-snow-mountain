@@ -1,4 +1,4 @@
-import sprite from "sprite";
+import Sprite from "./sprite";
 
 class ImagePainter {
   image: HTMLImageElement;
@@ -7,7 +7,7 @@ class ImagePainter {
     this.image = image;
   }
 
-  paint(sprite: sprite, context: CanvasRenderingContext2D) {
+  paint(sprite: Sprite, context: CanvasRenderingContext2D) {
     context.drawImage(
       this.image,
       sprite.left,
@@ -27,7 +27,7 @@ interface ICell {
 
 class SpriteSheetPainter {
   cells: ICell[];
-  cellIndex: number = 0;
+  cellIndex = 0;
   spriteSheet: HTMLImageElement;
 
   constructor(cells: any, spriteSheet: HTMLImageElement) {
@@ -40,20 +40,12 @@ class SpriteSheetPainter {
     if (this.cellIndex === this.cells.length - 1) {
       this.cellIndex = 0;
     } else {
-      this.cellIndex++;
+      this.cellIndex += 1;
     }
   }
 
-  paint(sprite: sprite, context: CanvasRenderingContext2D) {
-    console.log(
-      "=====> SpriteSheetPainter.paint",
-      this.cellIndex,
-      this.cells,
-      this.spriteSheet
-    );
+  paint(sprite: Sprite, context: CanvasRenderingContext2D) {
     const cell = this.cells[this.cellIndex];
-    // context.fillStyle = "rgb(255, 255, 255)";
-    // context.fillRect(cell.x, cell.y, cell.width, cell.height);
     context.drawImage(
       this.spriteSheet,
       cell.x,
@@ -75,7 +67,7 @@ class BallPainter {
     this.radius = radius;
   }
 
-  paint(sprite: sprite, context: CanvasRenderingContext2D) {
+  paint(sprite: Sprite, context: CanvasRenderingContext2D) {
     context.beginPath();
     context.arc(
       sprite.left + sprite.width / 2,

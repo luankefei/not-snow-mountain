@@ -41,8 +41,8 @@ class Sprite {
   }
 
   update(context: CanvasRenderingContext2D, time: number) {
-    for (let i = 0; i < this.behaviors.length; i++) {
-      this.behaviors[i].execute(this, context, time);
+    for (const b of this.behaviors) {
+      b.execute(this, context, time);
     }
   }
 }
