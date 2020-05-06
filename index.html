@@ -33,6 +33,7 @@
       const painter = new $.Painter.SpriteSheetPainter(runnerCells, image);
 
       function init() {
+        // TODO: executor属于业务代码，后面会从引擎中移除
         const sprite = new $.Sprite("runner", painter, [
           $.Executor.runInPlace,
           $.Executor.moveLeftToRight,
