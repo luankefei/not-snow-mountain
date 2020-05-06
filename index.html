@@ -30,17 +30,17 @@
         { x: 425, y: 0, width: 35, height: 64 },
       ];
 
-      const runInPlace = {
-        lastAdvance: 0,
-        PAGEFLIP_INTERVAL: 1000,
+      // const runInPlace = {
+      //   lastAdvance: 0,
+      //   PAGEFLIP_INTERVAL: 100,
 
-        execute: function (sprite, context, now) {
-          if (now - this.lastAdvance > this.PAGEFLIP_INTERVAL) {
-            sprite.painter.advance();
-            this.lastAdvance = now;
-          }
-        },
-      };
+      //   execute: function (sprite, context, now) {
+      //     if (now - this.lastAdvance > this.PAGEFLIP_INTERVAL) {
+      //       sprite.painter.advance();
+      //       this.lastAdvance = now;
+      //     }
+      //   },
+      // };
 
       const painter = new $.Painter.SpriteSheetPainter(runnerCells, image);
 

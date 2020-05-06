@@ -3,6 +3,7 @@
  */
 import * as Painter from "./painter";
 import Sprite from "./sprite";
+import * as Executor from "./executor";
 
 class Game {
   canvas: HTMLCanvasElement;
@@ -51,5 +52,5 @@ function createCanvas(width: number, height: number) {
   return node;
 }
 
-export { Game, Painter, Sprite };
+export { Game, Painter, Sprite, Executor };
 export default Game;
