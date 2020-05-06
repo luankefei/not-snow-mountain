@@ -24,6 +24,17 @@
     "build:pre": "better-npm-run build:pre",
     "build:dev": "better-npm-run build:dev"
   },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "prettier --parser typescript --write",
+      "tslint -t verbose -e \"src/*.d.ts\"",
+      "git add"
+    ]
+  },
+  "pre-commit": [
+    "format",
+    "lint:staged"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/luankefei/not-snow-mountain.git"
@@ -44,6 +55,7 @@
     "jest-canvas-mock": "^2.2.0",
     "jest-cli": "^25.5.3",
     "jest-esm-transformer": "^1.0.0",
+    "lint-staged": "^10.2.2",
     "rollup": "^2.7.6",
     "rollup-jest": "^0.0.2",
     "rollup-plugin-sourcemaps": "^0.6.0",
