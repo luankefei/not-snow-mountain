@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+
+<script src="../dist/index.js"></script>
+<script>
+  /**
+   * 绘制光标，光标每隔 300ms 闪烁一次，对用户可见 700ms
+   * 光标的尺寸，使用 EM 框高，约等于 (1 + 1 / 6) * M 字符的宽度
+   * 注: EM 框高度通常比字母 M 的宽度稍稍大上一点
+   */
+  const game = new $.Game();
+  const canvas = game.canvas;
+  const context = game.context;
+
+  // Painter
+  function CursorPainter(top, left, width = 2) {
+    const h = context.measureText("M").width;
+    this.top = top;
+    this.left = left;
+    this.width = width;
+    this.height = h + h / 6;
+    this.fillStyle = "rgba(0, 0, 0, 0.5)";
+
+    console.log("constructor");
+
+    return this;
+  }
+
+  CursorPainter.prototype.paint = function (sprite, context) {
+    context.save();
+    context.beginPath();
+    context.rect(this.left, this.top, this.width, this.height);
+    context.fillStyle = this.fillStyle;
+    context.fill();
+    context.restore();
+  };
+
+  CursorPainter.prototype.erase = function () {
+    // 清除整个画布
+    context.clearRect(0, 0, canvas.width, canvas.height);
+  };
+
+  CursorPainter.prototype.advance = function () {
+    // 对整个 canvas 生成快照
+    const saveImageData = context.getImageData(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+    // 擦除
+    this.erase();
+
+    setTimeout(() => {
+      context.putImageData(
+        saveImageData,
+        0,
+        0,
+        this.left,
+        this.top,
+        this.width,
+        this.height
+      );
+    }, 100);
+  };
+
+  // Exector
+  const erasePerSecond = {
+    lastAdvance: 0,
+    BLINK_ON: 100,
+    BLINK_OFF: 100,
+
+    execute(sprite, _, time) {
+      if (time - this.lastAdvance > this.BLINK_ON + this.BLINK_OFF) {
+        sprite.painter.advance();
+        this.lastAdvance = time;
+      }
+    },
+  };
+
+  function init() {
+    // 光标尺寸与文字尺寸相关，为了更明显
+    context.font = "40px Arial";
+
+    const painter = new CursorPainter(100, 100);
+
+    // 还没编写 executor，使用 executor实现光标闪烁
+    const sprite = new $.Sprite("cursor", painter, [erasePerSecond]);
+
+    // 注意需要主动调用绘制方法
+    sprite.paint(context);
+
+    // x轴移动速度
+    return sprite;
+  }
+
+  const sprite = init();
+
+  function animate(sprite, time) {
+    // drawBackround();
+    // sprite.paint(context);
+    sprite.update(context, time);
+
+    requestAnimationFrame((time) => animate(sprite, time));
+  }
+
+  animate(sprite, 0);
+</script>

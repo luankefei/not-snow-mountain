@@ -44,7 +44,7 @@ class SpriteSheetPainter {
     }
   }
 
-  paint(sprite: Sprite, context: CanvasRenderingContext2D) {
+  paint(sprite: sprite, context: canvasrenderingcontext2d) {
     const cell = this.cells[this.cellIndex];
     context.drawImage(
       this.spriteSheet,
