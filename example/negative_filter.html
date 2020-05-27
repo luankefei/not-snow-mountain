@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>黑白滤镜</title>
+    <title>负片滤镜</title>
     <style>
       * {
         margin: 0;
@@ -15,6 +15,7 @@
     <canvas id="canvas"></canvas>
   </body>
 </html>
+
 <script>
   const canvas = document.getElementById("canvas");
   canvas.width = screen.availWidth;
@@ -36,16 +37,14 @@
     const { data } = imageData;
 
     for (let i = 0; i < data.length - 4; i += 4) {
-      const avg = data[i] + data[i + 1] + data[i + 2] / 3;
-      data[i] = avg;
-      data[i + 1] = avg;
-      data[i + 2] = avg;
+      data[i] = 255 - data[i];
+      data[i + 1] = 255 - data[i + 1];
+      data[i + 2] = 255 - data[i + 2];
     }
-
     ctx.putImageData(imageData, 0, 0);
   }
 
   /**
-   * 黑白滤镜：从255中减去每个像素的红、绿、蓝分量值的平均值，然后将三个分量都设置为这一均值，于是就把图片变成了黑白
+   * 负片滤镜，对每个像素点，使用 255 减去当前色值
    */
 </script>
